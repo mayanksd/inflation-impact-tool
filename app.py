@@ -167,26 +167,20 @@ if st.button("🚀 Calculate Future Expenses"):
     # --- Calculate CAGR (Annual Lifestyle Inflation) ---
     cagr = round(((projected_expenses_20yr / current_total) ** (1 / 20) - 1) * 100, 1)
 
-    # --- Final Combined Output Block ---
+    # --- Final Combined Output Block with Clean HTML ---
     st.markdown(f"""
-        <div style='font-size: 1.3rem; margin-top: 20px; line-height: 1.8;'>
-
-            ✅ <b>Current Monthly Expense in {current_year}:</b> ₹ {format_indian(current_total)}<br>
-
-            📆 <b>In 10 Years:</b> ₹ {format_indian(projected_expenses_10yr)} 
-            <span style='color: gray;'>({percent_10}% more than today)</span><br>
-
-            🔮 <b>In 20 Years:</b> ₹ {format_indian(projected_expenses_20yr)} 
-            <span style='color: gray;'>({percent_20}% more than today)</span><br><br>
-
-            📢 <b>Your lifestyle expenses are increasing at {cagr}% annually.</b><br>
-            You need to increase your income by at least <b>{cagr}% every year</b> to keep up.<br>
-            <i>How much salary increment did you receive this year?</i>
-
+        <div style='font-size: 1.3rem; line-height: 1.8; margin-top: 20px;'>
+            <p>✅ <strong>Current Monthly Expense in {current_year}:</strong> ₹ {format_indian(current_total)}</p>
+            <p>📆 <strong>In 10 Years:</strong> ₹ {format_indian(projected_expenses_10yr)} 
+            <span style='color: gray;'>({percent_10}% more than today)</span></p>
+            <p>🔮 <strong>In 20 Years:</strong> ₹ {format_indian(projected_expenses_20yr)} 
+            <span style='color: gray;'>({percent_20}% more than today)</span></p>
+            <br>
+            <p>📢 <strong>Your lifestyle expenses are increasing at {cagr}% annually.</strong><br>
+            You need to increase your income by at least <strong>{cagr}% every year</strong> to keep up.<br>
+            <em>How much salary increment did you receive this year?</em></p>
         </div>
     """, unsafe_allow_html=True)
-
-
      
 st.markdown("---")
 st.subheader("✅ Inflation Rates Applied:")
