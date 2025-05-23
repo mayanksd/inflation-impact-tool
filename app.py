@@ -163,35 +163,31 @@ if st.button("🚀 Calculate Future Expenses"):
      # --- Compute % Increase over Current ---
     percent_10 = round((projected_expenses_10yr - current_total) / current_total * 100)
     percent_20 = round((projected_expenses_20yr - current_total) / current_total * 100)
-
-    # --- Display Combined Output in Uniform Font Style ---
-    st.markdown(f"""
-        <div style='font-size: 1.3rem; margin-top: 20px;'>
-            ✅ <b>Current Monthly Expense in {current_year}:</b> ₹ {format_indian(current_total)}
-        </div>
-        <div style='font-size: 1.3rem; margin-top: 10px;'>
-            📆 <b>In 10 Years:</b> ₹ {format_indian(projected_expenses_10yr)} 
-            <span style='color: gray;'>({percent_10}% more than today)</span>
-        </div>
-        <div style='font-size: 1.3rem; margin-top: 10px;'>
-            📆 <b>In 20 Years:</b> ₹ {format_indian(projected_expenses_20yr)} 
-            <span style='color: gray;'>({percent_20}% more than today)</span>
-        </div>
-    """, unsafe_allow_html=True)
     
-    
-    # --- Calculate CAGR (Annual Inflation Impact) on Lifestyle Cost ---
+    # --- Calculate CAGR (Annual Lifestyle Inflation) ---
     cagr = round(((projected_expenses_20yr / current_total) ** (1 / 20) - 1) * 100, 1)
 
-    # --- Display Lifestyle Inflation Insight (with spacing) ---
+    # --- Final Combined Output Block ---
     st.markdown(f"""
-        <div style='margin-top: 40px; font-size: 1.2rem; line-height: 1.6;'>
+        <div style='font-size: 1.3rem; margin-top: 20px; line-height: 1.8;'>
+
+            ✅ <b>Current Monthly Expense in {current_year}:</b> ₹ {format_indian(current_total)}<br>
+
+            📆 <b>In 10 Years:</b> ₹ {format_indian(projected_expenses_10yr)} 
+            <span style='color: gray;'>({percent_10}% more than today)</span><br>
+
+            🔮 <b>In 20 Years:</b> ₹ {format_indian(projected_expenses_20yr)} 
+            <span style='color: gray;'>({percent_20}% more than today)</span><br><br>
+
             📢 <b>Your lifestyle expenses are increasing at {cagr}% annually.</b><br>
             You need to increase your income by at least <b>{cagr}% every year</b> to keep up.<br>
             <i>How much salary increment did you receive this year?</i>
+
         </div>
     """, unsafe_allow_html=True)
-    
+
+
+     
 st.markdown("---")
 st.subheader("✅ Inflation Rates Applied:")
 for category in categories:
