@@ -106,6 +106,34 @@ if age > 40:
 elif age > 30:
     inflation_rates["Healthcare"] = 15
 
+# --- Calculate 10-Year and 20-Year Future Monthly Expenses ---
+projected_expenses_10yr = {}
+projected_expenses_20yr = {}
+total_10yr = 0
+total_20yr = 0
+
+for category in categories:
+    current = monthly_expenses[category]
+    rate = inflation_rates[category] / 100
+
+    future_10 = round(current * ((1 + rate) ** 10))
+    future_20 = round(current * ((1 + rate) ** 20))
+
+    projected_expenses_10yr[category] = future_10
+    projected_expenses_20yr[category] = future_20
+
+    total_10yr += future_10
+    total_20yr += future_20
+
+st.markdown("---")
+st.header("📅 Projected Monthly Expenses")
+
+st.subheader("🔟 In 10 Years")
+st.write(f"**Total Monthly Expense in Year 10**: ₹ {total_10yr:,}")
+
+st.subheader("💸 In 20 Years")
+st.write(f"**Total Monthly Expense in Year 20**: ₹ {total_20yr:,}")
+
 st.markdown("---")
 st.subheader("✅ Inflation Rates Applied:")
 for category in categories:
