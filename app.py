@@ -1,6 +1,6 @@
 import streamlit as st
 
-# --- Custom CSS for Green Dropdown and Button Hover ---
+# --- Custom CSS for Green Focus and Hover Styles ---
 st.markdown("""
     <style>
     /* Button hover to green */
@@ -15,13 +15,18 @@ st.markdown("""
         box-shadow: 0 0 0 0.2rem rgba(46, 204, 113, 0.25);
     }
 
-    /* Remove red outline on dropdown focus */
+    /* Remove red outline on dropdown */
     div[data-baseweb="select"] > div {
         border-color: #ccc;
     }
+
+    /* Textbox (number_input) green focus border */
+    input:focus {
+        border: 2px solid #2ecc71 !important;
+        box-shadow: 0 0 0 0.2rem rgba(46, 204, 113, 0.25) !important;
+    }
     </style>
 """, unsafe_allow_html=True)
-
 
 st.title("🧮 Inflation Impact Calculator (India)")
 
