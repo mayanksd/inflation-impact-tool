@@ -36,9 +36,9 @@ categories = [
     "Utilities"
 ]
 
-# --- Monthly Expense Inputs with ₹ Symbol Formatting ---
+# --- Monthly Expense Inputs with ₹ in Label ---
 for category in categories:
-    monthly_expenses[category] = st.number_input(f"{category}", min_value=0, step=100, format="₹%d")
+    monthly_expenses[category] = st.number_input(f"₹ {category}", min_value=0, step=100)
 
 # --- Inflation Rate Logic ---
 inflation_rates = {
