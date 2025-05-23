@@ -167,88 +167,79 @@ for category in categories:
     total_10yr += future_10
     total_20yr += future_20
 
-# --- Button to Calculate 10-Year and 20-Year Future Monthly Expenses ---
+
+# --- Button to Calculate and Store Future Monthly Expenses in Session State ---
 if st.button("🚀 Calculate Future Expenses"):
-    # --- Edge Case: If no expenses are entered ---
     if all(v == 0 for v in monthly_expenses.values()):
         st.warning("⚠️ Please enter at least one monthly expense before calculating.")
     else:
-        # --- Compute Total Projected Monthly Expense for Year 10 and 20 ---
-        projected_expenses_10yr = 0
-        projected_expenses_20yr = 0
-
-        for category in categories:
-            current = monthly_expenses[category]
-            rate = inflation_rates[category] / 100
-
-            projected_10 = round(current * ((1 + rate) ** 10))
-            projected_20 = round(current * ((1 + rate) ** 20))
-
-            projected_expenses_10yr += projected_10
-            projected_expenses_20yr += projected_20
-
-        # --- Display Final Result ---
-        st.markdown("---")
-        st.header("📈 Projected Monthly Lifestyle Cost")
-
-        # --- Display Current Expense ---
-        from datetime import datetime
-        current_total = sum(monthly_expenses.values())
-        current_year = datetime.now().year
-
-        # --- Compute % Increase over Current ---
-        percent_10 = round((projected_expenses_10yr - current_total) / current_total * 100)
-        percent_20 = round((projected_expenses_20yr - current_total) / current_total * 100)
-
-        # --- Calculate CAGR (Annual Lifestyle Inflation) ---
-        cagr = round(((projected_expenses_20yr / current_total) ** (1 / 20) - 1) * 100, 1)
-
-        # --- Final Combined Output Block with Clean HTML ---
-        st.markdown(f"""
-            <div style='font-size: 1.3rem; line-height: 1.8; margin-top: 20px;'>
-                <p>✅ <strong>Current Monthly Expense in {current_year}:</strong> ₹ {format_indian(current_total)}</p>
-                <p>📆 <strong>In 10 Years:</strong> ₹ {format_indian(projected_expenses_10yr)} 
-                <span style='color: gray;'>({percent_10}% more than today)</span></p>
-                <p>🔮 <strong>In 20 Years:</strong> ₹ {format_indian(projected_expenses_20yr)} 
-                <span style='color: gray;'>({percent_20}% more than today)</span></p>
-                <br>
-                <p>📢 <strong>Your lifestyle expenses are increasing at {cagr}% annually.</strong><br>
-                You need to increase your income by at least <strong>{cagr}% every year</strong> to keep up.<br>
-                <em>How much salary increment did you receive this year?</em></p>
-            </div>
-        """, unsafe_allow_html=True)
-        
+        # --- Store projections in session state for persistent display ---
+        st.session_state["projected_10"] = sum(
+            round(monthly_expenses[c] * ((1 + inflation_rates[c]/100) ** 10))
+            for c in categories
+        )
+        st.session_state["projected_20"] = sum(
+            round(monthly_expenses[c] * ((1 + inflation_rates[c]/100) ** 20))
+            for c in categories
+        )
+        st.session_state["current_total"] = sum(monthly_expenses.values())
+        st.session_state["cagr"] = round(
+            ((st.session_state["projected_20"] / st.session_state["current_total"]) ** (1 / 20) - 1) * 100, 1
+        )
+        st.session_state["percent_10"] = round(
+            (st.session_state["projected_10"] - st.session_state["current_total"]) / st.session_state["current_total"] * 100
+        )
+        st.session_state["percent_20"] = round(
+            (st.session_state["projected_20"] - st.session_state["current_total"]) / st.session_state["current_total"] * 100
+        )
         st.session_state["future_expenses_displayed"] = True
 
-        # -------------------------------
-        # 🔗 Share Buttons: WhatsApp + LinkedIn
-        # -------------------------------
-        import urllib.parse
 
-        share_message = f"My real lifestyle inflation rate is {cagr}%. Check yours: https://inflationimpact.mayankdwivedi.com/"
-        wa_url = "https://wa.me/?text=" + urllib.parse.quote(share_message)
-        li_url = "https://www.linkedin.com/sharing/share-offsite/?url=" + urllib.parse.quote("https://inflationimpact.mayankdwivedi.com")
-
-        st.markdown(f"""
-        <br><br>
-        <a href="{wa_url}" target="_blank">
-            <button style="background-color:#25D366;color:white;padding:8px 16px;border:none;border-radius:5px;margin-right:10px;cursor:pointer;">
-                📤 Share on WhatsApp
-            </button>
-        </a>
-        <a href="{li_url}" target="_blank">
-            <button style="background-color:#0077b5;color:white;padding:8px 16px;border:none;border-radius:5px;cursor:pointer;">
-                💼 Share on LinkedIn
-            </button>
-        </a>
-        """, unsafe_allow_html=True)
-
-# --- Session-aware button to reveal real-life examples ---
-if "show_examples" not in st.session_state:
-     st.session_state["show_examples"] = False
-
-# --- Show disbelief button and real-life examples only after projection has been displayed ---
+# --- Display Future Expense Output if Previously Calculated ---
 if st.session_state.get("future_expenses_displayed", False):
+    from datetime import datetime
+    import urllib.parse
+
+    current_year = datetime.now().year
+    st.markdown("---")
+    st.header("📈 Projected Monthly Lifestyle Cost")
+
+    st.markdown(f"""
+        <div style='font-size: 1.3rem; line-height: 1.8; margin-top: 20px;'>
+            <p>✅ <strong>Current Monthly Expense in {current_year}:</strong> ₹ {format_indian(st.session_state["current_total"])}</p>
+            <p>📆 <strong>In 10 Years:</strong> ₹ {format_indian(st.session_state["projected_10"])} 
+            <span style='color: gray;'>({st.session_state["percent_10"]}% more than today)</span></p>
+            <p>🔮 <strong>In 20 Years:</strong> ₹ {format_indian(st.session_state["projected_20"])} 
+            <span style='color: gray;'>({st.session_state["percent_20"]}% more than today)</span></p>
+            <br>
+            <p>📢 <strong>Your lifestyle expenses are increasing at {st.session_state["cagr"]}% annually.</strong><br>
+            You need to increase your income by at least <strong>{st.session_state["cagr"]}% every year</strong> to keep up.<br>
+            <em>How much salary increment did you receive this year?</em></p>
+        </div>
+    """, unsafe_allow_html=True)
+
+    # --- Social Share Buttons ---
+    share_message = f"My real lifestyle inflation rate is {st.session_state['cagr']}%. Check yours: https://inflationimpact.mayankdwivedi.com/"
+    wa_url = "https://wa.me/?text=" + urllib.parse.quote(share_message)
+    li_url = "https://www.linkedin.com/sharing/share-offsite/?url=" + urllib.parse.quote("https://inflationimpact.mayankdwivedi.com")
+
+    st.markdown(f"""
+    <br><br>
+    <a href="{wa_url}" target="_blank">
+        <button style="background-color:#25D366;color:white;padding:8px 16px;border:none;border-radius:5px;margin-right:10px;cursor:pointer;">
+            📤 Share on WhatsApp
+        </button>
+    </a>
+    <a href="{li_url}" target="_blank">
+        <button style="background-color:#0077b5;color:white;padding:8px 16px;border:none;border-radius:5px;cursor:pointer;">
+            💼 Share on LinkedIn
+        </button>
+    </a>
+    """, unsafe_allow_html=True)
+
+    # --- Optional: "I don't believe this!" block ---
+    if "show_examples" not in st.session_state:
+        st.session_state["show_examples"] = False
 
     if st.button("😮 I don't believe this! (Click anyway)"):
         st.session_state["show_examples"] = True
@@ -260,36 +251,38 @@ if st.session_state.get("future_expenses_displayed", False):
 **🛫 Flight: Mumbai to Delhi**  
 2005: ₹1,599 → 2025: ₹5,352  
 CAGR: ~6.2%  
-📎 [TOI](https://timesofindia.indiatimes.com/business/india-business/now-fly-delhi-mumbai-for-rs-1599/articleshow/1197518.cms?utm_source=chatgpt.com) | [Air India](https://www.airindia.com/en-us/book-flights/mumbai-to-delhi-flights?utm_source=chatgpt.com)
+📎 [TOI](https://timesofindia.indiatimes.com/business/india-business/now-fly-delhi-mumbai-for-rs-1599/articleshow/1197518.cms) | [Air India](https://www.airindia.com/en-us/book-flights/mumbai-to-delhi-flights)
 
 ---
 
 **🥛 Milk (1 litre)**  
 2005: ₹13 → 2025: ₹30  
 CAGR: ~4.3%  
-📎 [TOI](https://timesofindia.indiatimes.com/city/bengaluru/nandini-milk-price-hike-from-jan-14/articleshow/401859.cms?utm_source=chatgpt.com) | [HT](https://www.hindustantimes.com/india-news/mother-dairy-hikes-milk-prices-by-up-to-rs-2-per-litre-effective-april-30-101745943405275.html?utm_source=chatgpt.com)
+📎 [TOI](https://timesofindia.indiatimes.com/city/bengaluru/nandini-milk-price-hike-from-jan-14/articleshow/401859.cms) | [HT](https://www.hindustantimes.com/india-news/mother-dairy-hikes-milk-prices-by-up-to-rs-2-per-litre-effective-april-30)
 
 ---
 
 **🏠 Rent: 2BHK in Bangalore**  
 2005: ₹5,000 → 2025: ₹35,000  
 CAGR: ~10.2%  
-📎 [Housing.com](https://housing.com/rent/2bhk-flats-for-rent-in-bengaluru-karnataka-C4P38f9yfbk7p3m2h1f?utm_source=chatgpt.com)
+📎 [Housing.com](https://housing.com/rent/2bhk-flats-for-rent-in-bengaluru-karnataka)
 
 ---
 
 **🏥 Health Insurance (Annual)**  
 2005: ₹1,000 → 2025: ₹7,000  
 CAGR: ~10.2%  
-📎 [Wikipedia](https://en.wikipedia.org/wiki/Health_insurance_in_India?utm_source=chatgpt.com)
+📎 [Wikipedia](https://en.wikipedia.org/wiki/Health_insurance_in_India)
 
 ---
 
 **🎓 Private School Tuition**  
 2005: ₹20,000 → 2025: ₹1,00,000  
 CAGR: ~8.4%  
-📎 [EduFund](https://www.edufund.in/blog/factors-responsible-for-education-inflation/)
+📎 [EduFund](https://www.edufund.in/blog/factors-responsible-for-education-inflation)
         """)
+
+
 
 # --- Collapsible Section: Inflation Rates Applied & References ---
 with st.expander("📁 Inflation Rates Applied & References"):
