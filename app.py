@@ -125,14 +125,29 @@ for category in categories:
     total_10yr += future_10
     total_20yr += future_20
 
-st.markdown("---")
-st.header("📅 Projected Monthly Expenses")
+# --- Button to Calculate 10-Year and 20-Year Future Monthly Expenses ---
+if st.button("🚀 Calculate Future Expenses"):
+    
+    # --- Compute Total Projected Monthly Expense for Year 10 and 20 ---
+    projected_expenses_10yr = 0
+    projected_expenses_20yr = 0
 
-st.subheader("🔟 In 10 Years")
-st.write(f"**Total Monthly Expense in Year 10**: ₹ {total_10yr:,}")
+    for category in categories:
+        current = monthly_expenses[category]
+        rate = inflation_rates[category] / 100
 
-st.subheader("💸 In 20 Years")
-st.write(f"**Total Monthly Expense in Year 20**: ₹ {total_20yr:,}")
+        projected_10 = round(current * ((1 + rate) ** 10))
+        projected_20 = round(current * ((1 + rate) ** 20))
+
+        projected_expenses_10yr += projected_10
+        projected_expenses_20yr += projected_20
+
+    # --- Display Final Result ---
+    st.markdown("---")
+    st.header("📅 Projected Monthly Lifestyle Cost")
+
+    st.write(f"🟢 **In 10 Years**: ₹ {projected_expenses_10yr:,} / month")
+    st.write(f"🔴 **In 20 Years**: ₹ {projected_expenses_20yr:,} / month")
 
 st.markdown("---")
 st.subheader("✅ Inflation Rates Applied:")
