@@ -1,6 +1,6 @@
 import streamlit as st
 
-# --- Custom CSS for Green Focus and Hover Styles ---
+# --- Custom CSS to Remove Red Border and Apply Green Highlight ---
 st.markdown("""
     <style>
     /* Button hover to green */
@@ -9,21 +9,27 @@ st.markdown("""
         color: white !important;
     }
 
-    /* Dropdown hover and focus border color */
+    /* Dropdown focus green border */
     div[data-baseweb="select"] > div:focus-within {
         border-color: #2ecc71 !important;
         box-shadow: 0 0 0 0.2rem rgba(46, 204, 113, 0.25);
     }
 
-    /* Remove red outline on dropdown */
+    /* Remove red dropdown border */
     div[data-baseweb="select"] > div {
-        border-color: #ccc;
+        border-color: #ccc !important;
     }
 
-    /* Textbox (number_input) green focus border */
+    /* Input focus green border, remove red */
     input:focus {
         border: 2px solid #2ecc71 !important;
         box-shadow: 0 0 0 0.2rem rgba(46, 204, 113, 0.25) !important;
+        outline: none !important;
+    }
+
+    /* Completely remove any red outline for Streamlit number input */
+    input {
+        border-color: #ccc !important;
     }
     </style>
 """, unsafe_allow_html=True)
