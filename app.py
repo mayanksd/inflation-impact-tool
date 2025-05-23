@@ -237,35 +237,39 @@ if st.session_state.get("future_expenses_displayed", False):
     """, unsafe_allow_html=True)
     
    
-    
-    # --- "I don't believe this!" button shown after projection ---
+    # --- "I don't believe this!" button (styled safely using wrapper div) ---
     if "show_examples" not in st.session_state:
         st.session_state["show_examples"] = False
 
     if st.session_state.get("future_expenses_displayed", False):
-        clicked = st.button("😮 I don't believe this! (Click anyway)")
-        if clicked:
-            st.session_state["show_examples"] = True
+        with st.container():
+            # Custom wrapper to isolate styling
+            st.markdown("<div id='disbelief-button-wrapper'>", unsafe_allow_html=True)
+            clicked = st.button("😮 I don't believe this! (Click anyway)")
+            st.markdown("</div>", unsafe_allow_html=True)
 
-        # --- Style only the last button rendered (disbelief button)
-        st.markdown("""
-        <style>
-        div.stButton:last-of-type > button {
-            background-color: #FF5733 !important;
-            color: white !important;
-            padding: 10px 18px;
-            border: none;
-            border-radius: 8px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-        }
-        div.stButton:last-of-type > button:hover {
-            background-color: #e04d00 !important;
-        }
-        </style>
-        """, unsafe_allow_html=True)
-        
+            # Scoped CSS for only this button
+            st.markdown("""
+                <style>
+                #disbelief-button-wrapper button {
+                    background-color: #FF5733 !important;
+                    color: white !important;
+                    padding: 10px 18px;
+                    border: none;
+                    border-radius: 8px;
+                    font-size: 1.1rem;
+                    font-weight: 600;
+                    cursor: pointer;
+                }
+                #disbelief-button-wrapper button:hover {
+                    background-color: #e04d00 !important;
+                }
+                </style>
+            """, unsafe_allow_html=True)
+
+            if clicked:
+                st.session_state["show_examples"] = True
+  
         
            
     if st.session_state.get("show_examples", False):
