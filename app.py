@@ -243,13 +243,13 @@ if st.session_state.get("future_expenses_displayed", False):
     if st.button("😮 I don't believe this! (Click anyway)"):
         st.session_state["show_examples"] = True
 
-    # --- Display Real-Life Inflation Examples ---
+    # --- Real-Life Inflation Examples Display (clean rendering with HTML) ---
     if st.session_state.get("show_examples", False):
         st.markdown("<br>", unsafe_allow_html=True)
-        st.markdown("### 📉 Real-Life Impact of Inflation (2005–2025)")
+        st.markdown("### 📉 Real-Life Impact of Inflation (2005–2025)", unsafe_allow_html=True)
 
         st.markdown("""
-        <div style='font-size: 1.05rem; line-height: 1.8; color: #333;'>
+        <div style='font-size: 1.05rem; line-height: 1.8; color: #eee;'>
             <b>🛫 Flight: Mumbai to Delhi</b><br>
             2005: ₹1,599 → 2025: ₹5,352<br>
             CAGR: ~6.2%<br>
