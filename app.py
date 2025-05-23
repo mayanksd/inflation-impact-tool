@@ -247,25 +247,27 @@ if st.session_state.get("future_expenses_displayed", False):
         if clicked:
             st.session_state["show_examples"] = True
 
-        # --- Style the last button rendered (affects this one)
+        # --- Style only the last button rendered (disbelief button)
         st.markdown("""
-            <style>
-            div.stButton > button {
-                background-color: #FF5733;
-                color: white;
-                padding: 10px 18px;
-                border: none;
-                border-radius: 8px;
-                font-size: 1.1rem;
-                font-weight: 600;
-                cursor: pointer;
-            }
-            div.stButton > button:hover {
-                background-color: #e04d00;
-            }
-            </style>
+        <style>
+        div.stButton:last-of-type > button {
+            background-color: #FF5733 !important;
+            color: white !important;
+            padding: 10px 18px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        div.stButton:last-of-type > button:hover {
+            background-color: #e04d00 !important;
+        }
+        </style>
         """, unsafe_allow_html=True)
-    
+        
+        
+           
     if st.session_state.get("show_examples", False):
         st.markdown("<br>", unsafe_allow_html=True)
         st.markdown("### 📉 Real-Life Impact of Inflation (2005–2025)")
