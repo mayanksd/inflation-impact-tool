@@ -57,7 +57,7 @@ categories = [
     "Utilities"
 ]
 
-# --- Monthly Expense Inputs with ₹ Symbol and Hint Above Input Field (fixed) ---
+# --- Monthly Expense Inputs with Compact Layout and Hints ---
 hints = {
     "Rent": None,
     "Groceries & Household Supplies": "📝 Includes vegetables, milk, bread, and also toilet roll, spices, cleaning items etc.",
@@ -72,10 +72,16 @@ hints = {
 }
 
 for category in categories:
-    st.markdown(f"### ₹ {category}")
+    st.markdown(f"<div style='font-weight: 600; font-size: 1.05rem;'>₹ {category}</div>", unsafe_allow_html=True)
     if hints.get(category):
-        st.markdown(f"<span style='color:gray; font-size: 0.9em'>{hints[category]}</span>", unsafe_allow_html=True)
-    monthly_expenses[category] = st.number_input(label=f"{category}_input", min_value=0, step=100, label_visibility="collapsed")
+        st.markdown(f"<div style='color:gray; font-size: 0.9rem;'>{hints[category]}</div>", unsafe_allow_html=True)
+    monthly_expenses[category] = st.number_input(
+        label=f"{category}_input", 
+        min_value=0, 
+        step=100, 
+        label_visibility="collapsed"
+    )
+
 
 
 # --- Inflation Rate Logic ---
