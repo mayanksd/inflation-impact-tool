@@ -151,6 +151,7 @@ for category in categories:
     total_20yr += future_20
 
 # --- Button to Calculate 10-Year and 20-Year Future Monthly Expenses ---
+# --- Button to Calculate 10-Year and 20-Year Future Monthly Expenses ---
 if st.button("🚀 Calculate Future Expenses"):
     # --- Edge Case: If no expenses are entered ---
     if all(v == 0 for v in monthly_expenses.values()):
@@ -170,60 +171,60 @@ if st.button("🚀 Calculate Future Expenses"):
             projected_expenses_10yr += projected_10
             projected_expenses_20yr += projected_20
 
-    # --- Display Final Result ---
-    st.markdown("---")
-    st.header("📈 Projected Monthly Lifestyle Cost")
+        # --- Display Final Result ---
+        st.markdown("---")
+        st.header("📈 Projected Monthly Lifestyle Cost")
 
-    # --- Display Current Expense ---
-    from datetime import datetime
-    current_total = sum(monthly_expenses.values())
-    current_year = datetime.now().year
-   
-     # --- Compute % Increase over Current ---
-    percent_10 = round((projected_expenses_10yr - current_total) / current_total * 100)
-    percent_20 = round((projected_expenses_20yr - current_total) / current_total * 100)
-    
-    # --- Calculate CAGR (Annual Lifestyle Inflation) ---
-    cagr = round(((projected_expenses_20yr / current_total) ** (1 / 20) - 1) * 100, 1)
+        # --- Display Current Expense ---
+        from datetime import datetime
+        current_total = sum(monthly_expenses.values())
+        current_year = datetime.now().year
 
-    # --- Final Combined Output Block with Clean HTML ---
-    st.markdown(f"""
-        <div style='font-size: 1.3rem; line-height: 1.8; margin-top: 20px;'>
-            <p>✅ <strong>Current Monthly Expense in {current_year}:</strong> ₹ {format_indian(current_total)}</p>
-            <p>📆 <strong>In 10 Years:</strong> ₹ {format_indian(projected_expenses_10yr)} 
-            <span style='color: gray;'>({percent_10}% more than today)</span></p>
-            <p>🔮 <strong>In 20 Years:</strong> ₹ {format_indian(projected_expenses_20yr)} 
-            <span style='color: gray;'>({percent_20}% more than today)</span></p>
-            <br>
-            <p>📢 <strong>Your lifestyle expenses are increasing at {cagr}% annually.</strong><br>
-            You need to increase your income by at least <strong>{cagr}% every year</strong> to keep up.<br>
-            <em>How much salary increment did you receive this year?</em></p>
-        </div>
-    """, unsafe_allow_html=True)
+        # --- Compute % Increase over Current ---
+        percent_10 = round((projected_expenses_10yr - current_total) / current_total * 100)
+        percent_20 = round((projected_expenses_20yr - current_total) / current_total * 100)
 
-      # -------------------------------
-    # 🔗 Share Buttons: WhatsApp + LinkedIn
-    # -------------------------------
-    import urllib.parse
+        # --- Calculate CAGR (Annual Lifestyle Inflation) ---
+        cagr = round(((projected_expenses_20yr / current_total) ** (1 / 20) - 1) * 100, 1)
 
-    share_message = f"My real lifestyle inflation rate is {cagr}%. Check yours: https://inflationimpact.mayankdwivedi.com/"
-    wa_url = "https://wa.me/?text=" + urllib.parse.quote(share_message)
-    li_url = "https://www.linkedin.com/sharing/share-offsite/?url=" + urllib.parse.quote("https://inflationimpact.mayankdwivedi.com")
+        # --- Final Combined Output Block with Clean HTML ---
+        st.markdown(f"""
+            <div style='font-size: 1.3rem; line-height: 1.8; margin-top: 20px;'>
+                <p>✅ <strong>Current Monthly Expense in {current_year}:</strong> ₹ {format_indian(current_total)}</p>
+                <p>📆 <strong>In 10 Years:</strong> ₹ {format_indian(projected_expenses_10yr)} 
+                <span style='color: gray;'>({percent_10}% more than today)</span></p>
+                <p>🔮 <strong>In 20 Years:</strong> ₹ {format_indian(projected_expenses_20yr)} 
+                <span style='color: gray;'>({percent_20}% more than today)</span></p>
+                <br>
+                <p>📢 <strong>Your lifestyle expenses are increasing at {cagr}% annually.</strong><br>
+                You need to increase your income by at least <strong>{cagr}% every year</strong> to keep up.<br>
+                <em>How much salary increment did you receive this year?</em></p>
+            </div>
+        """, unsafe_allow_html=True)
 
-    st.markdown(f"""
-    <br><br>
-    <a href="{wa_url}" target="_blank">
-        <button style="background-color:#25D366;color:white;padding:8px 16px;border:none;border-radius:5px;margin-right:10px;cursor:pointer;">
-            📤 Share on WhatsApp
-        </button>
-    </a>
-    <a href="{li_url}" target="_blank">
-        <button style="background-color:#0077b5;color:white;padding:8px 16px;border:none;border-radius:5px;cursor:pointer;">
-            💼 Share on LinkedIn
-        </button>
-    </a>
-    """, unsafe_allow_html=True)
-    
+        # -------------------------------
+        # 🔗 Share Buttons: WhatsApp + LinkedIn
+        # -------------------------------
+        import urllib.parse
+
+        share_message = f"My real lifestyle inflation rate is {cagr}%. Check yours: https://inflationimpact.mayankdwivedi.com/"
+        wa_url = "https://wa.me/?text=" + urllib.parse.quote(share_message)
+        li_url = "https://www.linkedin.com/sharing/share-offsite/?url=" + urllib.parse.quote("https://inflationimpact.mayankdwivedi.com")
+
+        st.markdown(f"""
+        <br><br>
+        <a href="{wa_url}" target="_blank">
+            <button style="background-color:#25D366;color:white;padding:8px 16px;border:none;border-radius:5px;margin-right:10px;cursor:pointer;">
+                📤 Share on WhatsApp
+            </button>
+        </a>
+        <a href="{li_url}" target="_blank">
+            <button style="background-color:#0077b5;color:white;padding:8px 16px;border:none;border-radius:5px;cursor:pointer;">
+                💼 Share on LinkedIn
+            </button>
+        </a>
+        """, unsafe_allow_html=True)
+
      
 # --- Collapsible Section: Inflation Rates Applied & References ---
 with st.expander("📁 Inflation Rates Applied & References"):
