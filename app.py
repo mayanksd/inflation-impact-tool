@@ -46,12 +46,14 @@ st.markdown("""
 # --- Custom Style to Increase Expander Title Font Size ---
 st.markdown("""
     <style>
-    .streamlit-expanderHeader {
+    /* Make expander title bigger and bolder */
+    summary {
         font-size: 1.2rem !important;
-        font-weight: 600;
+        font-weight: 600 !important;
     }
     </style>
 """, unsafe_allow_html=True)
+
 
 st.title("🧮 Inflation Impact Calculator (India)")
 
