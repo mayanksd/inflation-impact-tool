@@ -43,26 +43,23 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-# --- Force Expander Title Font Size with JS Injection ---
-st.markdown("""
-    <script>
-    const waitForHeader = () => {
-        const expander = window.parent.document.querySelectorAll('.streamlit-expanderHeader');
-        if (expander && expander.length > 0) {
-            expander.forEach(e => {
-                e.style.fontSize = '20px';
-                e.style.fontWeight = '700';
-            });
-        } else {
-            setTimeout(waitForHeader, 100);
-        }
-    };
-    waitForHeader();
-    </script>
-""", unsafe_allow_html=True)
 
 
 st.title("🧮 Inflation Impact Calculator (India)")
+
+# --- Collapsible About Section with Emojis and Indian Flag ---
+with st.expander("ℹ️ About this Tool"):
+    st.markdown("""
+    This calculator helps you estimate how your monthly **lifestyle expenses** will increase over the next **10 and 20 years**, based on realistic inflation data across 11 spending categories — built for the **Indian context** 🇮🇳.
+
+    **What it does:**
+
+    - 🧾 Lets you input your current monthly expenses across categories like rent, groceries, healthcare, etc.  
+    - 📈 Uses real inflation trends and data-backed assumptions to project your future monthly costs  
+    - 💸 Shows how much your income needs to grow annually just to maintain your lifestyle  
+
+    Designed for working professionals and urban families in India 🇮🇳 who want to understand and plan for the **real impact of lifestyle inflation** — beyond what headline CPI numbers show.
+    """)
 
 # --- User Inputs ---
 age = st.number_input("Enter your current age", min_value=18, max_value=80, step=1)
