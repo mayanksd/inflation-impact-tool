@@ -45,6 +45,8 @@ st.markdown("""
 
 
 st.title("🧮 Inflation Impact Calculator (India)")
+# --- Anchor Target for "Go to Top" Button ---
+st.markdown("<a name='top-anchor'></a>", unsafe_allow_html=True)
 
 # --- Collapsible About Section with Emojis and Indian Flag ---
 with st.expander("ℹ️ About this Tool"):
@@ -236,24 +238,27 @@ if st.session_state.get("future_expenses_displayed", False):
     </a>
     """, unsafe_allow_html=True)
 
-    # --- Go to Top Button (appears after social share buttons) ---
+    # --- Go to Top Button with JavaScript Scroll ---
     st.markdown("""
         <br>
-        <button onclick="window.scrollTo({ top: 0, behavior: 'smooth' });" style="
-            background-color: #f0f0f0;
-            color: #333;
-            padding: 10px 16px;
-            border: none;
-            border-radius: 6px;
-            font-weight: 600;
-            font-size: 0.95rem;
-            cursor: pointer;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            margin-bottom: 10px;
-        ">
-            🔝 Go to Top
-        </button>
+        <a href="#top-anchor">
+            <button style="
+                background-color: #f0f0f0;
+                color: #333;
+                padding: 10px 16px;
+                border: none;
+                border-radius: 6px;
+                font-weight: 600;
+                font-size: 0.95rem;
+                cursor: pointer;
+                box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+                margin-bottom: 10px;
+            ">
+                🔝 Go to Top
+            </button>
+        </a>
     """, unsafe_allow_html=True)
+
     
     # --- "I don't believe this!" button ---
     if "show_examples" not in st.session_state:
