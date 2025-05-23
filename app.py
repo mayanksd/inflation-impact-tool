@@ -178,9 +178,28 @@ if st.button("🚀 Calculate Future Expenses"):
             <br>
             <p>📢 <strong>Your lifestyle expenses are increasing at {cagr}% annually.</strong><br>
             You need to increase your income by at least <strong>{cagr}% every year</strong> to keep up.<br>
-            <em>How much salary increment did you receive this year? 🥴</em></p>
+            <em>How much salary increment did you receive this year?</em></p>
         </div>
     """, unsafe_allow_html=True)
+    
+    # --- Social Share Buttons with Dynamic WhatsApp Message ---
+    share_url = "https://inflationimpact.mayankdwivedi.com/"
+    whatsapp_message = f"My real lifestyle inflation rate is {cagr}%. Check yours at: {share_url}"
+
+    linkedin_url = f"https://www.linkedin.com/sharing/share-offsite/?url={share_url}"
+    whatsapp_url = f"https://api.whatsapp.com/send?text={whatsapp_message}"
+
+    st.markdown("""
+        <br>
+        <div style='margin-top: 10px;'>
+            <a href='{0}' target='_blank' style='text-decoration: none; margin-right: 15px;'>
+                🔗 Share on LinkedIn
+            </a>
+            <a href='{1}' target='_blank' style='text-decoration: none;'>
+                📱 Share on WhatsApp
+            </a>
+        </div>
+    """.format(linkedin_url, whatsapp_url), unsafe_allow_html=True)
      
 st.markdown("---")
 st.subheader("✅ Inflation Rates Applied:")
