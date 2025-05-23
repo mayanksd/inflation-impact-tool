@@ -257,22 +257,26 @@ CAGR: ~6.2%<br>
 📎 <a href="https://timesofindia.indiatimes.com/business/india-business/now-fly-delhi-mumbai-for-rs-1599/articleshow/1197518.cms" target="_blank">TOI</a> | 
 <a href="https://www.airindia.com/en-us/book-flights/mumbai-to-delhi-flights" target="_blank">Air India</a>
 <hr>
+
 <b>🥛 Milk (1 litre)</b><br>
 2005: ₹13 → 2025: ₹30<br>
 CAGR: ~4.3%<br>
 📎 <a href="https://timesofindia.indiatimes.com/city/bengaluru/nandini-milk-price-hike-from-jan-14/articleshow/401859.cms" target="_blank">TOI</a> | 
 <a href="https://www.hindustantimes.com/india-news/mother-dairy-hikes-milk-prices-by-up-to-rs-2-per-litre-effective-april-30" target="_blank">HT</a>
 <hr>
+
 <b>🏠 Rent: 2BHK in Bangalore</b><br>
 2005: ₹5,000 → 2025: ₹35,000<br>
 CAGR: ~10.2%<br>
 📎 <a href="https://housing.com/rent/2bhk-flats-for-rent-in-bengaluru-karnataka" target="_blank">Housing.com</a>
 <hr>
+
 <b>🏥 Health Insurance (Annual)</b><br>
 2005: ₹1,000 → 2025: ₹7,000<br>
 CAGR: ~10.2%<br>
 📎 <a href="https://en.wikipedia.org/wiki/Health_insurance_in_India" target="_blank">Wikipedia</a>
 <hr>
+
 <b>🎓 Private School Tuition</b><br>
 2005: ₹20,000 → 2025: ₹1,00,000<br>
 CAGR: ~8.4%<br>
