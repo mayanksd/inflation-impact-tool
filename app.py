@@ -43,6 +43,16 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
+# --- Custom Style to Increase Expander Title Font Size ---
+st.markdown("""
+    <style>
+    .streamlit-expanderHeader {
+        font-size: 1.2rem !important;
+        font-weight: 600;
+    }
+    </style>
+""", unsafe_allow_html=True)
+
 st.title("🧮 Inflation Impact Calculator (India)")
 
 # --- User Inputs ---
@@ -207,7 +217,7 @@ if st.button("🚀 Calculate Future Expenses"):
     
      
 # --- Collapsible Section: Inflation Rates Applied & References ---
-with st.expander("📊 Inflation Rates Applied & References"):
+with st.expander("📁 Inflation Rates Applied & References"):
     st.markdown("Below are the inflation rate assumptions used in this tool, along with links to credible sources:")
 
     st.markdown("**🏠 Rent (5–7%)**")
