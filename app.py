@@ -128,7 +128,6 @@ for category in categories:
             )
 
 
-
 # --- Inflation Rate Logic ---
 inflation_rates = {
     "Rent": 7 if location == "Metro" else 5,
@@ -168,7 +167,6 @@ for category in categories:
     total_10yr += future_10
     total_20yr += future_20
 
-# --- Button to Calculate 10-Year and 20-Year Future Monthly Expenses ---
 # --- Button to Calculate 10-Year and 20-Year Future Monthly Expenses ---
 if st.button("🚀 Calculate Future Expenses"):
     # --- Edge Case: If no expenses are entered ---
@@ -219,6 +217,8 @@ if st.button("🚀 Calculate Future Expenses"):
                 <em>How much salary increment did you receive this year?</em></p>
             </div>
         """, unsafe_allow_html=True)
+        
+        st.session_state["future_expenses_displayed"] = True
 
         # -------------------------------
         # 🔗 Share Buttons: WhatsApp + LinkedIn
@@ -243,21 +243,21 @@ if st.button("🚀 Calculate Future Expenses"):
         </a>
         """, unsafe_allow_html=True)
 
-        # --- Session-aware button to reveal real-life examples ---
-    if "show_examples" not in st.session_state:
-        st.session_state["show_examples"] = False
+# --- Session-aware button to reveal real-life examples ---
+if "show_examples" not in st.session_state:
+     st.session_state["show_examples"] = False
 
-    # Reset the flag if a new calculation is triggered
-    st.session_state["show_examples"] = False
+# Reset the flag if a new calculation is triggered
+st.session_state["show_examples"] = False
 
-    # Show disbelief button only after showing projections
-    if st.button("😮 I don't believe this! (Click anyway)"):
-        st.session_state["show_examples"] = True
+# Show disbelief button only after showing projections
+if st.button("😮 I don't believe this! (Click anyway)"):
+    st.session_state["show_examples"] = True
 
-    if st.session_state["show_examples"]:
-        st.markdown("<br>", unsafe_allow_html=True)
-        st.markdown("#### 📉 Real-Life Impact of Inflation (2005–2025)")
-        st.markdown("""
+if st.session_state["show_examples"]:
+    st.markdown("<br>", unsafe_allow_html=True)
+    st.markdown("#### 📉 Real-Life Impact of Inflation (2005–2025)")
+    st.markdown("""
 **🛫 Flight: Mumbai to Delhi**  
 2005: ₹1,599 → 2025: ₹5,352  
 CAGR: ~6.2%  
