@@ -247,17 +247,16 @@ if st.button("🚀 Calculate Future Expenses"):
 if "show_examples" not in st.session_state:
      st.session_state["show_examples"] = False
 
-# Reset the flag if a new calculation is triggered
-st.session_state["show_examples"] = False
+# --- Show disbelief button and real-life examples only after projection has been displayed ---
+if st.session_state.get("future_expenses_displayed", False):
 
-# Show disbelief button only after showing projections
-if st.button("😮 I don't believe this! (Click anyway)"):
-    st.session_state["show_examples"] = True
+    if st.button("😮 I don't believe this! (Click anyway)"):
+        st.session_state["show_examples"] = True
 
-if st.session_state["show_examples"]:
-    st.markdown("<br>", unsafe_allow_html=True)
-    st.markdown("#### 📉 Real-Life Impact of Inflation (2005–2025)")
-    st.markdown("""
+    if st.session_state.get("show_examples", False):
+        st.markdown("<br>", unsafe_allow_html=True)
+        st.markdown("#### 📉 Real-Life Impact of Inflation (2005–2025)")
+        st.markdown("""
 **🛫 Flight: Mumbai to Delhi**  
 2005: ₹1,599 → 2025: ₹5,352  
 CAGR: ~6.2%  
@@ -290,7 +289,7 @@ CAGR: ~10.2%
 2005: ₹20,000 → 2025: ₹1,00,000  
 CAGR: ~8.4%  
 📎 [EduFund](https://www.edufund.in/blog/factors-responsible-for-education-inflation/)
-""")
+        """)
 
 # --- Collapsible Section: Inflation Rates Applied & References ---
 with st.expander("📁 Inflation Rates Applied & References"):
