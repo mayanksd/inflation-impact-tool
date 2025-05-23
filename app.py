@@ -1,4 +1,13 @@
 import streamlit as st
+# --- Helper: Format numbers in Indian number system (₹2,50,000 etc.) ---
+import re
+
+def format_indian(number):
+    x = str(number)
+    pattern = re.compile(r'(\d+)(\d{3})')
+    while pattern.match(x):
+        x = pattern.sub(r'\1,\2', x)
+    return x
 
 # --- Custom CSS to Fix Number Input Red Border and Add Green Focus ---
 st.markdown("""
@@ -144,11 +153,32 @@ if st.button("🚀 Calculate Future Expenses"):
 
     # --- Display Final Result ---
     st.markdown("---")
-    st.header("📅 Projected Monthly Lifestyle Cost")
+    st.header("📈 Projected Monthly Lifestyle Cost")
 
-    st.write(f"🟢 **In 10 Years**: ₹ {projected_expenses_10yr:,} / month")
-    st.write(f"🔴 **In 20 Years**: ₹ {projected_expenses_20yr:,} / month")
+    # --- Display Current Expense ---
+    from datetime import datetime
+    current_total = sum(monthly_expenses.values())
+    current_year = datetime.now().year
+   
+     # --- Compute % Increase over Current ---
+    percent_10 = round((projected_expenses_10yr - current_total) / current_total * 100)
+    percent_20 = round((projected_expenses_20yr - current_total) / current_total * 100)
 
+    # --- Display Combined Output in Uniform Font Style ---
+    st.markdown(f"""
+        <div style='font-size: 1.3rem; margin-top: 20px;'>
+            🧾 <b>Current Monthly Expense in {current_year}:</b> ₹ {format_indian(current_total)}
+        </div>
+        <div style='font-size: 1.3rem; margin-top: 10px;'>
+            📆 <b>In 10 Years:</b> ₹ {format_indian(projected_expenses_10yr)} 
+            <span style='color: gray;'>({percent_10}% more than today)</span>
+        </div>
+        <div style='font-size: 1.3rem; margin-top: 10px;'>
+            📆 <b>In 20 Years:</b> ₹ {format_indian(projected_expenses_20yr)} 
+            <span style='color: gray;'>({percent_20}% more than today)</span>
+        </div>
+    """, unsafe_allow_html=True)
+    
 st.markdown("---")
 st.subheader("✅ Inflation Rates Applied:")
 for category in categories:
