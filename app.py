@@ -242,15 +242,15 @@ if st.session_state.get("future_expenses_displayed", False):
     if "show_examples" not in st.session_state:
         st.session_state["show_examples"] = False
 
-    # Only show this if future expenses are calculated
     if st.session_state.get("future_expenses_displayed", False):
-        if st.button("😮 I don't believe this! (Click anyway)", key="believe_button"):
+        clicked = st.button("😮 I don't believe this! (Click anyway)")
+        if clicked:
             st.session_state["show_examples"] = True
 
-        # Style the button to look better
+        # --- Style the last button rendered (affects this one)
         st.markdown("""
             <style>
-            div.stButton > button#believe_button {
+            div.stButton > button {
                 background-color: #FF5733;
                 color: white;
                 padding: 10px 18px;
@@ -260,11 +260,11 @@ if st.session_state.get("future_expenses_displayed", False):
                 font-weight: 600;
                 cursor: pointer;
             }
-            div.stButton > button#believe_button:hover {
+            div.stButton > button:hover {
                 background-color: #e04d00;
             }
             </style>
-        """, unsafe_allow_html=True)  
+        """, unsafe_allow_html=True)
     
     if st.session_state.get("show_examples", False):
         st.markdown("<br>", unsafe_allow_html=True)
