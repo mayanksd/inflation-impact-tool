@@ -182,39 +182,28 @@ if st.button("🚀 Calculate Future Expenses"):
         </div>
     """, unsafe_allow_html=True)
 
-    # --- Styled Social Share Buttons with Brand Colors ---
-    share_url = "https://inflationimpact.mayankdwivedi.com/"
-    whatsapp_message = f"My real lifestyle inflation rate is {cagr}%. Check yours at: {share_url}"
+      # -------------------------------
+    # 🔗 Share Buttons: WhatsApp + LinkedIn
+    # -------------------------------
+    import urllib.parse
 
-    linkedin_url = f"https://www.linkedin.com/sharing/share-offsite/?url={share_url}"
-    whatsapp_url = f"https://api.whatsapp.com/send?text={whatsapp_message}"
+    share_message = f"My real lifestyle inflation rate is {cagr}%. Check yours: https://inflationimpact.mayankdwivedi.com/"
+    wa_url = "https://wa.me/?text=" + urllib.parse.quote(share_message)
+    li_url = "https://www.linkedin.com/sharing/share-offsite/?url=" + urllib.parse.quote("https://inflationimpact.mayankdwivedi.com")
 
-    share_html = f"""
-    <br>
-    <div style='margin-top: 20px; display: flex; gap: 20px;'>
-        <a href="{whatsapp_url}" target="_blank" style="
-            background-color: #25D366;
-            color: white;
-            padding: 10px 16px;
-            border-radius: 6px;
-            text-decoration: none;
-            font-weight: 600;
-            display: inline-block;
-        ">📱 Share on WhatsApp</a>
-
-        <a href="{linkedin_url}" target="_blank" style="
-            background-color: #0077b5;
-            color: white;
-            padding: 10px 16px;
-            border-radius: 6px;
-            text-decoration: none;
-            font-weight: 600;
-            display: inline-block;
-        ">🔗 Share on LinkedIn</a>
-    </div>
-    """
-
-    st.markdown(share_html, unsafe_allow_html=True)
+    st.markdown(f"""
+    <br><br>
+    <a href="{wa_url}" target="_blank">
+        <button style="background-color:#25D366;color:white;padding:8px 16px;border:none;border-radius:5px;margin-right:10px;cursor:pointer;">
+            📤 Share on WhatsApp
+        </button>
+    </a>
+    <a href="{li_url}" target="_blank">
+        <button style="background-color:#0077b5;color:white;padding:8px 16px;border:none;border-radius:5px;cursor:pointer;">
+            💼 Share on LinkedIn
+        </button>
+    </a>
+    """, unsafe_allow_html=True)
     
      
 st.markdown("---")
