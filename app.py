@@ -50,7 +50,7 @@ st.title("🧮 Inflation Impact Calculator (India)")
 # --- Collapsible About Section with Emojis and Indian Flag ---
 with st.expander("ℹ️ About this Tool"):
     st.markdown("""
-    This calculator helps you estimate how your monthly **lifestyle expenses** will increase over the next **10 and 20 years**, based on realistic inflation data across 11 spending categories — built for the **Indian context** 🇮🇳.
+    This calculator helps you estimate how your monthly **lifestyle expenses** will increase over the next **10 and 20 years**, based on real inflation data across 11 spending categories — built for the **Indian context** 🇮🇳.
 
     **What it does:**
 
