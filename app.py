@@ -243,41 +243,54 @@ if st.button("🚀 Calculate Future Expenses"):
         </a>
         """, unsafe_allow_html=True)
 
-    # --- Session-aware button to reveal real-life examples ---
+        # --- Session-aware button to reveal real-life examples ---
     if "show_examples" not in st.session_state:
         st.session_state["show_examples"] = False
 
+    # Reset the flag if a new calculation is triggered
+    st.session_state["show_examples"] = False
+
+    # Show disbelief button only after showing projections
     if st.button("😮 I don't believe this! (Click anyway)"):
         st.session_state["show_examples"] = True
 
     if st.session_state["show_examples"]:
-        st.markdown("### 📉 Real-Life Impact of Inflation (2005–2025)")
+        st.markdown("<br>", unsafe_allow_html=True)
+        st.markdown("#### 📉 Real-Life Impact of Inflation (2005–2025)")
         st.markdown("""
-            **🛫 Flight: Mumbai to Delhi**  
-            2005: ₹1,599 → 2025: ₹5,352  
-            CAGR: ~6.2%  
-            📎 [TOI](https://timesofindia.indiatimes.com/business/india-business/now-fly-delhi-mumbai-for-rs-1599/articleshow/1197518.cms?utm_source=chatgpt.com) | [Air India](https://www.airindia.com/en-us/book-flights/mumbai-to-delhi-flights?utm_source=chatgpt.com)
-            ---
-            **🥛 Milk (1 litre)**  
-            2005: ₹13 → 2025: ₹30  
-            CAGR: ~4.3%  
-            📎 [TOI](https://timesofindia.indiatimes.com/city/bengaluru/nandini-milk-price-hike-from-jan-14/articleshow/401859.cms?utm_source=chatgpt.com) | [HT](https://www.hindustantimes.com/india-news/mother-dairy-hikes-milk-prices-by-up-to-rs-2-per-litre-effective-april-30-101745943405275.html?utm_source=chatgpt.com)
-            ---
-            **🏠 Rent: 2BHK in Bangalore**  
-            2005: ₹5,000 → 2025: ₹35,000  
-            CAGR: ~10.2%  
-            📎 [Housing.com](https://housing.com/rent/2bhk-flats-for-rent-in-bengaluru-karnataka-C4P38f9yfbk7p3m2h1f?utm_source=chatgpt.com)
-            ---
-            **🏥 Health Insurance (Annual)**  
-            2005: ₹1,000 → 2025: ₹7,000  
-            CAGR: ~10.2%  
-            📎 [Wikipedia](https://en.wikipedia.org/wiki/Health_insurance_in_India?utm_source=chatgpt.com)
-            ---
-            **🎓 Private School Tuition**  
-            2005: ₹20,000 → 2025: ₹1,00,000  
-            CAGR: ~8.4%  
-            📎 [EduFund Blog](https://www.edufund.in/blog/factors-responsible-for-education-inflation/)
-        """)
+**🛫 Flight: Mumbai to Delhi**  
+2005: ₹1,599 → 2025: ₹5,352  
+CAGR: ~6.2%  
+📎 [TOI](https://timesofindia.indiatimes.com/business/india-business/now-fly-delhi-mumbai-for-rs-1599/articleshow/1197518.cms?utm_source=chatgpt.com) | [Air India](https://www.airindia.com/en-us/book-flights/mumbai-to-delhi-flights?utm_source=chatgpt.com)
+
+---
+
+**🥛 Milk (1 litre)**  
+2005: ₹13 → 2025: ₹30  
+CAGR: ~4.3%  
+📎 [TOI](https://timesofindia.indiatimes.com/city/bengaluru/nandini-milk-price-hike-from-jan-14/articleshow/401859.cms?utm_source=chatgpt.com) | [HT](https://www.hindustantimes.com/india-news/mother-dairy-hikes-milk-prices-by-up-to-rs-2-per-litre-effective-april-30-101745943405275.html?utm_source=chatgpt.com)
+
+---
+
+**🏠 Rent: 2BHK in Bangalore**  
+2005: ₹5,000 → 2025: ₹35,000  
+CAGR: ~10.2%  
+📎 [Housing.com](https://housing.com/rent/2bhk-flats-for-rent-in-bengaluru-karnataka-C4P38f9yfbk7p3m2h1f?utm_source=chatgpt.com)
+
+---
+
+**🏥 Health Insurance (Annual)**  
+2005: ₹1,000 → 2025: ₹7,000  
+CAGR: ~10.2%  
+📎 [Wikipedia](https://en.wikipedia.org/wiki/Health_insurance_in_India?utm_source=chatgpt.com)
+
+---
+
+**🎓 Private School Tuition**  
+2005: ₹20,000 → 2025: ₹1,00,000  
+CAGR: ~8.4%  
+📎 [EduFund](https://www.edufund.in/blog/factors-responsible-for-education-inflation/)
+""")
 
 # --- Collapsible Section: Inflation Rates Applied & References ---
 with st.expander("📁 Inflation Rates Applied & References"):
