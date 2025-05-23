@@ -206,7 +206,53 @@ if st.button("🚀 Calculate Future Expenses"):
     """, unsafe_allow_html=True)
     
      
-st.markdown("---")
-st.subheader("✅ Inflation Rates Applied:")
-for category in categories:
-    st.write(f"**{category}**: {inflation_rates[category]}%")
+# --- Collapsible Section: Inflation Rates Applied & References ---
+with st.expander("📂 Inflation Rates Applied & References"):
+    st.markdown("""
+    Below are the inflation rate assumptions used in this tool, along with links to data sources and recent reports:
+
+    **🏠 Rent** (5–7%)  
+    - [Global Property Guide](https://www.globalpropertyguide.com/asia/india/price-history)  
+    - [India Today: Rent Crisis](https://www.indiatoday.in/sunday-special/story/high-rent-crisis-india-real-estate-new-cities-bengaluru-delhi-ncr-mumbai-flats-2529306-2024-04-21?utm_source=chatgpt.com)
+
+    **🛒 Groceries & Household Supplies** (5%)  
+    - [PIB – Food Inflation](https://www.pib.gov.in/PressReleasePage.aspx?PRID=2122148)
+
+    **🎬 Weekend Entertainment** (5%)  
+    - [CPI Data](https://www.data.gov.in/keywords/CPI)
+
+    **✈️ Vacation** (8%)  
+    - [Reuters – India’s Travel Boom](https://www.reuters.com/breakingviews/indias-travel-boom-enters-departure-lounge-2025-02-12)
+
+    **👩‍🍳 Househelp** (8%)  
+    - [ILO Report](https://www.ilo.org/sites/default/files/wcmsp5/groups/public/%40asia/%40ro-bangkok/%40sro-new_delhi/documents/publication/wcms_638305.pdf)  
+    - [JobNukkad Salary Guide](https://jobnukkad.com/full-time-maid-salary-in-mumbai)  
+    - [Glassdoor: Maid Salaries](https://www.glassdoor.co.in/Salaries/maid-salary-SRCH_KO0%2C4.htm)
+
+    **🩺 Healthcare** (12–20%)  
+    - [Financial Express](https://www.financialexpress.com/business/healthcare/indias-healthcare-costs-to-rise-13-in-2025-beat-global-average-report/3800929)  
+    - [Acko Health Inflation](https://www.acko.com/health-insurance/medical-inflation-in-india/)
+
+    **🐶 Pet Expenses** (10%)  
+    - [Mordor Intelligence – Pet Market](https://www.mordorintelligence.com/industry-reports/india-pet-food-market)  
+    - [NPR on Rising Pet Costs](https://www.npr.org/2024/07/29/nx-s1-5018032/inflation-pets-expensive-money-cost-veterinary)  
+    - [Business Standard](https://www.business-standard.com/industry/news/online-pet-care-sales-double-fy25-small-cities-drive-demand-125041500826_1.html)
+
+    **🎓 Education** (10%)  
+    - [Fincart – Education Inflation](https://www.fincart.com/blog/how-will-education-inflation-impact-in-the-coming-years/)  
+    - [EduFund Blog](https://www.edufund.in/blog/factors-responsible-for-education-inflation/)
+
+    **📺 Subscriptions** (10%)  
+    - [S&P Global – Streamer Pricing](https://www.spglobal.com/market-intelligence/en/news-insights/research/streamers-balance-growth-and-pricing-strategies-in-india)  
+    - [TOI: YouTube Premium Prices](https://timesofindia.indiatimes.com/technology/tech-news/youtube-increases-premium-plan-prices-but-why-users-in-india-should-not-worry/articleshow/113640960.cms)
+
+    **💡 Utilities** (6%)  
+    - [CERC – Regulatory Reference](https://en.wikipedia.org/wiki/Central_Electricity_Regulatory_Commission?utm_source=chatgpt.com)  
+    - [PRS Blog – LPG Prices](https://prsindia.org/theprsblog/recent-rise-in-lpg-prices?page=4&per-page=1)  
+    - [HT: Airtel & Jio Bill Impact](https://www.hindustantimes.com/technology/decoding-costlier-airtel-and-jio-bills-and-what-it-means-for-india-s-5g-curve-101720036268234.html)
+
+    **🚕 Transportation** (7%)  
+    - [BankBazaar: Petrol Price Trend](https://www.bankbazaar.com/fuel/petrol-price-trend-in-india.html)  
+    - [Mordor: Taxi Market Report](https://www.mordorintelligence.com/industry-reports/india-taxi-market)  
+    - [WorldData – India Inflation](https://www.worlddata.info/asia/india/inflation-rates.php)
+    """)
