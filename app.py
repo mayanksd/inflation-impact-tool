@@ -152,20 +152,23 @@ for category in categories:
 
 # --- Button to Calculate 10-Year and 20-Year Future Monthly Expenses ---
 if st.button("🚀 Calculate Future Expenses"):
-    
-    # --- Compute Total Projected Monthly Expense for Year 10 and 20 ---
-    projected_expenses_10yr = 0
-    projected_expenses_20yr = 0
+    # --- Edge Case: If no expenses are entered ---
+    if all(v == 0 for v in monthly_expenses.values()):
+        st.warning("⚠️ Please enter at least one monthly expense before calculating.")
+    else:
+        # --- Compute Total Projected Monthly Expense for Year 10 and 20 ---
+        projected_expenses_10yr = 0
+        projected_expenses_20yr = 0
 
-    for category in categories:
-        current = monthly_expenses[category]
-        rate = inflation_rates[category] / 100
+        for category in categories:
+            current = monthly_expenses[category]
+            rate = inflation_rates[category] / 100
 
-        projected_10 = round(current * ((1 + rate) ** 10))
-        projected_20 = round(current * ((1 + rate) ** 20))
+            projected_10 = round(current * ((1 + rate) ** 10))
+            projected_20 = round(current * ((1 + rate) ** 20))
 
-        projected_expenses_10yr += projected_10
-        projected_expenses_20yr += projected_20
+            projected_expenses_10yr += projected_10
+            projected_expenses_20yr += projected_20
 
     # --- Display Final Result ---
     st.markdown("---")
