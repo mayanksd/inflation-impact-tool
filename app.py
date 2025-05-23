@@ -182,7 +182,6 @@ if st.button("🚀 Calculate Future Expenses"):
         </div>
     """, unsafe_allow_html=True)
     
-    
     # --- Styled Social Share Buttons with Brand Colors ---
     share_url = "https://inflationimpact.mayankdwivedi.com/"
     whatsapp_message = f"My real lifestyle inflation rate is {cagr}%. Check yours at: {share_url}"
@@ -190,10 +189,10 @@ if st.button("🚀 Calculate Future Expenses"):
     linkedin_url = f"https://www.linkedin.com/sharing/share-offsite/?url={share_url}"
     whatsapp_url = f"https://api.whatsapp.com/send?text={whatsapp_message}"
 
-    st.markdown(f"""
+    st.markdown("""
         <br>
         <div style='margin-top: 20px; display: flex; gap: 20px;'>
-            <a href='{whatsapp_url}' target='_blank' style='
+            <a href='{0}' target='_blank' style='
                 background-color: #25D366;
                 color: white;
                 padding: 10px 16px;
@@ -203,7 +202,7 @@ if st.button("🚀 Calculate Future Expenses"):
                 display: inline-block;
             '>📱 Share on WhatsApp</a>
 
-            <a href='{linkedin_url}' target='_blank' style='
+            <a href='{1}' target='_blank' style='
                 background-color: #0077b5;
                 color: white;
                 padding: 10px 16px;
@@ -213,7 +212,8 @@ if st.button("🚀 Calculate Future Expenses"):
                 display: inline-block;
             '>🔗 Share on LinkedIn</a>
         </div>
-    """, unsafe_allow_html=True)
+    """.format(whatsapp_url, linkedin_url), unsafe_allow_html=True)
+    
      
 st.markdown("---")
 st.subheader("✅ Inflation Rates Applied:")
