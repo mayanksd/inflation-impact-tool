@@ -54,7 +54,8 @@ categories = [
     "Pet Expenses",
     "Education",
     "Subscriptions",
-    "Utilities"
+    "Utilities",
+    "Transportation"
 ]
 
 # --- Monthly Expense Inputs with Compact Layout and Hints ---
@@ -68,7 +69,8 @@ hints = {
     "Pet Expenses": "📝 Food, vet visits, grooming, toys, litter etc.",
     "Education": "📝 Kids’ education + your own upskilling/learning expenses.",
     "Subscriptions": "📝 Netflix, Prime, Swiggy One, Zomato Gold, OpenAI, Canva, etc.",
-    "Utilities": "📝 Mobile, broadband, gas, electricity, water, etc."
+    "Utilities": "📝 Mobile, broadband, gas, electricity, water, etc.",
+    "Transportation": "📝 Include taxi, auto, bus, metro, petrol expenses"
 }
 
 for category in categories:
@@ -95,7 +97,8 @@ inflation_rates = {
     "Pet Expenses": 10,
     "Education": 10,
     "Subscriptions": 10,
-    "Utilities": 6
+    "Utilities": 6,
+    "Transportation": 7
 }
 
 if age > 40:
