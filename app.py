@@ -182,24 +182,38 @@ if st.button("🚀 Calculate Future Expenses"):
         </div>
     """, unsafe_allow_html=True)
     
-    # --- Social Share Buttons with Dynamic WhatsApp Message ---
+    
+    # --- Styled Social Share Buttons with Brand Colors ---
     share_url = "https://inflationimpact.mayankdwivedi.com/"
     whatsapp_message = f"My real lifestyle inflation rate is {cagr}%. Check yours at: {share_url}"
 
     linkedin_url = f"https://www.linkedin.com/sharing/share-offsite/?url={share_url}"
     whatsapp_url = f"https://api.whatsapp.com/send?text={whatsapp_message}"
 
-    st.markdown("""
+    st.markdown(f"""
         <br>
-        <div style='margin-top: 10px;'>
-            <a href='{0}' target='_blank' style='text-decoration: none; margin-right: 15px;'>
-                🔗 Share on LinkedIn
-            </a>
-            <a href='{1}' target='_blank' style='text-decoration: none;'>
-                📱 Share on WhatsApp
-            </a>
+        <div style='margin-top: 20px; display: flex; gap: 20px;'>
+            <a href='{whatsapp_url}' target='_blank' style='
+                background-color: #25D366;
+                color: white;
+                padding: 10px 16px;
+                border-radius: 6px;
+                text-decoration: none;
+                font-weight: 600;
+                display: inline-block;
+            '>📱 Share on WhatsApp</a>
+
+            <a href='{linkedin_url}' target='_blank' style='
+                background-color: #0077b5;
+                color: white;
+                padding: 10px 16px;
+                border-radius: 6px;
+                text-decoration: none;
+                font-weight: 600;
+                display: inline-block;
+            '>🔗 Share on LinkedIn</a>
         </div>
-    """.format(linkedin_url, whatsapp_url), unsafe_allow_html=True)
+    """, unsafe_allow_html=True)
      
 st.markdown("---")
 st.subheader("✅ Inflation Rates Applied:")
