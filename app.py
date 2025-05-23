@@ -1,12 +1,27 @@
 import streamlit as st
 
+# --- Custom CSS to Change Focus Color to Green ---
+st.markdown(
+    """
+    <style>
+    input:focus, select:focus, textarea:focus {
+        border-color: #28a745 !important;
+        outline-color: #28a745 !important;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
 st.title("🧮 Inflation Impact Calculator (India)")
 
 # --- User Inputs ---
 age = st.number_input("Enter your current age", min_value=18, max_value=80, step=1)
 location = st.selectbox("Where do you live in India?", ["Metro", "Non-Metro"])
 
-st.subheader("📊 Enter Your Monthly Expenses (in ₹)")
+# --- Monthly Expense Section Header with ₹ Icon ---
+st.subheader("₹ Enter Your Monthly Expenses")
+
 monthly_expenses = {}
 categories = [
     "Rent",
@@ -21,8 +36,9 @@ categories = [
     "Utilities"
 ]
 
+# --- Monthly Expense Inputs with ₹ Symbol Formatting ---
 for category in categories:
-    monthly_expenses[category] = st.number_input(f"{category}", min_value=0, step=100)
+    monthly_expenses[category] = st.number_input(f"{category}", min_value=0, step=100, format="₹%d")
 
 # --- Inflation Rate Logic ---
 inflation_rates = {
