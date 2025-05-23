@@ -45,7 +45,7 @@ st.subheader("₹ Enter Your Monthly Expenses")
 
 monthly_expenses = {}
 categories = [
-    "Rent",
+    "Monthly Rent",
     "Groceries & Household Supplies",
     "Weekend Entertainment",
     "Vacation",
@@ -57,9 +57,28 @@ categories = [
     "Utilities"
 ]
 
-# --- Monthly Expense Inputs with ₹ in Label ---
+# --- Monthly Expense Inputs with ₹ Symbol and Hints ---
+hints = {
+    "Monthly Rent": None,
+    "Groceries & Household Supplies": "Include vegetables, bread, milk, eggs etc. AND toilet roll, kitchen roll, spices etc., all",
+    "Weekend Entertainment": "Include movies, eating out, clubbing etc.",
+    "Vacation": "Include your 2-3 domestic vacation and 1-2 international vacation annually, divide by 12 for monthly cost",
+    "Househelp": "Include salaries for maid, cook, nanny, gardener, car washer, caretaker, etc.",
+    "Healthcare": "Include health & life insurance premiums, doctor visits and medicines, health supplements, etc.",
+    "Pet Expenses": "Include pet food, grooming, vet visits, toys, litter etc.",
+    "Education": "Include kids' school/college fee, your own upskilling, etc.",
+    "Subscriptions": "Include newspapers, Netflix, Prime Now, Swiggy One, Zomato Gold, Canva, OpenAI, YouTube Premium, etc.",
+    "Utilities": "Include bills for mobile, broadband, gas, electricity, water, etc."
+}
+
 for category in categories:
-    monthly_expenses[category] = st.number_input(f"₹ {category}", min_value=0, step=100)
+    monthly_expenses[category] = st.number_input(
+        f"₹ {category}",
+        min_value=0,
+        step=100,
+        help=hints.get(category)
+    )
+
 
 # --- Inflation Rate Logic ---
 inflation_rates = {
