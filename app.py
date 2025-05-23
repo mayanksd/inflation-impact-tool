@@ -167,7 +167,7 @@ if st.button("🚀 Calculate Future Expenses"):
     # --- Display Combined Output in Uniform Font Style ---
     st.markdown(f"""
         <div style='font-size: 1.3rem; margin-top: 20px;'>
-            🧾 <b>Current Monthly Expense in {current_year}:</b> ₹ {format_indian(current_total)}
+            ✅ <b>Current Monthly Expense in {current_year}:</b> ₹ {format_indian(current_total)}
         </div>
         <div style='font-size: 1.3rem; margin-top: 10px;'>
             📆 <b>In 10 Years:</b> ₹ {format_indian(projected_expenses_10yr)} 
