@@ -179,6 +179,19 @@ if st.button("🚀 Calculate Future Expenses"):
         </div>
     """, unsafe_allow_html=True)
     
+    
+    # --- Calculate CAGR (Annual Inflation Impact) on Lifestyle Cost ---
+    cagr = round(((projected_expenses_20yr / current_total) ** (1 / 20) - 1) * 100, 1)
+
+    # --- Display Lifestyle Inflation Insight (with spacing) ---
+    st.markdown(f"""
+        <div style='margin-top: 40px; font-size: 1.2rem; line-height: 1.6;'>
+            📢 <b>Your lifestyle expenses are increasing at {cagr}% annually.</b><br>
+            You need to increase your income by at least <b>{cagr}% every year</b> to keep up.<br>
+            <i>How much salary increment did you receive this year?</i>
+        </div>
+    """, unsafe_allow_html=True)
+    
 st.markdown("---")
 st.subheader("✅ Inflation Rates Applied:")
 for category in categories:
