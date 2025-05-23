@@ -178,7 +178,7 @@ if st.button("🚀 Calculate Future Expenses"):
             <br>
             <p>📢 <strong>Your lifestyle expenses are increasing at {cagr}% annually.</strong><br>
             You need to increase your income by at least <strong>{cagr}% every year</strong> to keep up.<br>
-            <em>How much salary increment did you receive this year?</em></p>
+            <em>How much salary increment did you receive this year? 🥴</em></p>
         </div>
     """, unsafe_allow_html=True)
      
