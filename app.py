@@ -98,26 +98,35 @@ hints = {
     "Transportation": "📝 Include taxi, auto, bus, metro, petrol expenses"
 }
 
+# Ensure `monthly_expenses` is initialized
+monthly_expenses = {}
+
 for category in categories:
     col1, col2 = st.columns([3, 1])
-    
+
     with col1:
         st.markdown(f"<div style='font-weight: 600; font-size: 1.05rem;'>₹ {category}</div>", unsafe_allow_html=True)
         if hints.get(category):
             st.markdown(f"<div style='color:gray; font-size: 0.9rem;'>{hints[category]}</div>", unsafe_allow_html=True)
-        monthly_expenses[category] = st.number_input(
+
+        # Store the input
+        value = st.number_input(
             label=f"{category}_input", 
             min_value=0, 
             step=100, 
             label_visibility="collapsed"
         )
+        monthly_expenses[category] = value
 
     with col2:
-        if monthly_expenses[category] > 0:
+        # Show formatted value only if > 0
+        if value > 0:
+            formatted_value = format_indian(value)
             st.markdown(
-                f"<div style='margin-top: 38px; font-weight: 500; color: #555;'>₹ {format_indian(monthly_expenses[category])}</div>", 
+                f"<div style='margin-top: 38px; font-weight: 500; color: #444;'>₹ {formatted_value}</div>", 
                 unsafe_allow_html=True
             )
+
 
 
 # --- Inflation Rate Logic ---
