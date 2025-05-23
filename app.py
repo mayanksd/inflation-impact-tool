@@ -45,7 +45,7 @@ st.subheader("₹ Enter Your Monthly Expenses")
 
 monthly_expenses = {}
 categories = [
-    "Monthly Rent",
+    "Rent",
     "Groceries & Household Supplies",
     "Weekend Entertainment",
     "Vacation",
