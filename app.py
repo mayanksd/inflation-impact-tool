@@ -236,6 +236,16 @@ if st.session_state.get("future_expenses_displayed", False):
     </a>
     """, unsafe_allow_html=True)
 
+# --- Go to Top Button (after social links, before disbelief button) ---
+st.markdown("""
+<br><br>
+<a href="#top">
+    <button style="background-color:#555;color:white;padding:8px 16px;border:none;border-radius:5px;cursor:pointer;">
+        ⬆️ Go to Top
+    </button>
+</a>
+""", unsafe_allow_html=True)
+
     # --- "I don't believe this!" button ---
     if "show_examples" not in st.session_state:
         st.session_state["show_examples"] = False
