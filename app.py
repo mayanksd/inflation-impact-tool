@@ -43,22 +43,24 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-# --- Final Attempt: Force Expander Header Font Size ---
+# --- Force Expander Title Font Size with JS Injection ---
 st.markdown("""
-    <style>
-    /* Streamlit Expander header tweak */
-    .streamlit-expanderHeader {
-        font-size: 20px !important;
-        font-weight: 700 !important;
-    }
-
-    /* Also apply to summary tag (HTML fallback) */
-    details > summary {
-        font-size: 20px !important;
-        font-weight: 700 !important;
-    }
-    </style>
+    <script>
+    const waitForHeader = () => {
+        const expander = window.parent.document.querySelectorAll('.streamlit-expanderHeader');
+        if (expander && expander.length > 0) {
+            expander.forEach(e => {
+                e.style.fontSize = '20px';
+                e.style.fontWeight = '700';
+            });
+        } else {
+            setTimeout(waitForHeader, 100);
+        }
+    };
+    waitForHeader();
+    </script>
 """, unsafe_allow_html=True)
+
 
 st.title("🧮 Inflation Impact Calculator (India)")
 
