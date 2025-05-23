@@ -236,16 +236,25 @@ if st.session_state.get("future_expenses_displayed", False):
     </a>
     """, unsafe_allow_html=True)
 
-# --- Go to Top Button (after social links, before disbelief button) ---
-st.markdown("""
-<br><br>
-<a href="#top">
-    <button style="background-color:#555;color:white;padding:8px 16px;border:none;border-radius:5px;cursor:pointer;">
-        ⬆️ Go to Top
-    </button>
-</a>
-""", unsafe_allow_html=True)
-
+    # --- Go to Top Button (appears after social share buttons) ---
+    st.markdown("""
+        <br>
+        <button onclick="window.scrollTo({ top: 0, behavior: 'smooth' });" style="
+            background-color: #f0f0f0;
+            color: #333;
+            padding: 10px 16px;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 10px;
+        ">
+            🔝 Go to Top
+        </button>
+    """, unsafe_allow_html=True)
+    
     # --- "I don't believe this!" button ---
     if "show_examples" not in st.session_state:
         st.session_state["show_examples"] = False
