@@ -235,33 +235,34 @@ if st.session_state.get("future_expenses_displayed", False):
         </button>
     </a>
     """, unsafe_allow_html=True)
-
-
-     # --- Optional: Styled "I don't believe this!" button using Streamlit form trick ---
+    
+    # --- Styled "I don't believe this!" button that appears after projection ---
     if "show_examples" not in st.session_state:
         st.session_state["show_examples"] = False
 
-    # Create a form just to capture click on styled button
-    with st.form(key="disbelief_form"):
-        st.markdown("""
-        <br><br>
-        <button type="submit" style="
-            background-color:#FF5733;
-            color:white;
-            padding:10px 18px;
-            border:none;
-            border-radius:8px;
-            font-size:1.1rem;
-            font-weight:600;
-            cursor:pointer;">
-            😮 I don't believe this! (Click anyway)
-        </button>
-        """, unsafe_allow_html=True)
-        submitted = st.form_submit_button(label="hidden_disbelief_button")
+    clicked = st.button("😮 I don't believe this! (Click anyway)", key="styled_disbelief")
 
-    if submitted:
+    # --- Custom styling for the disbelief button ---
+    st.markdown("""
+        <style>
+        div.stButton > button[kind="secondary"] {
+            background-color: #FF5733;
+            color: white;
+            padding: 10px 18px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        div.stButton > button[kind="secondary"]:hover {
+            background-color: #e04d00;
+        }
+        </style>
+    """, unsafe_allow_html=True)
+
+    if clicked:
         st.session_state["show_examples"] = True
-    
   
 
     # --- Hidden Streamlit button triggered by HTML button ---
